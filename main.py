@@ -24,18 +24,18 @@ def list_courses(
 ):
     courses = get_all_courses()
 
-    # 1. Фильтрация по элективности (важно проверять is not None)
+    # 1. Filtering by electiveness
     if is_elective is not None:
         courses = [c for c in courses if c.is_elective == is_elective]
 
-    # 2. Сортировка
+    # 2. Sorting (by title)
     if sort == "title":
         courses = sorted(courses, key=lambda c: c.title)
     else:
-        # По умолчанию сортируем по популярности (лайки по убыванию)
+        # Default: by likes
         courses = sorted(courses, key=lambda c: c.likes, reverse=True)
 
-    # 3. Пагинация (слайсинг списка)
+    # 3. Pagination
     offset = p["offset"]
     limit = p["limit"]
     return courses[offset : offset + limit]

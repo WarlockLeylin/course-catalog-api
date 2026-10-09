@@ -8,3 +8,8 @@ class Course(BaseModel):
     credits: int
     is_elective: bool = False
     likes: int = 0
+
+class Stats(BaseModel):
+    total: int
+    total_credits: int
+    electives: int
